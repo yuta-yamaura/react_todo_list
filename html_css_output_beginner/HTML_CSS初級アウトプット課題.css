@@ -60,7 +60,7 @@ h2 {
 }
 
 .jikoshokai {
-    display: grid;
+    /*display: grid;*/
     margin-top: 80px;
 }
 
@@ -84,8 +84,8 @@ footer {
         /*grid-template-rows: auto auto 30px 30px;*/
     /*}*/
     .jikoshokai h3 p {
-        /*grid-template-columns: 1fr 1fr 1fr 1fr;/
-        /*display: flex;*/
+        /*grid-template-columns: 1fr 1fr 1fr 1fr;*/
+        display: flex;
         /*justify-content: space-between;*/
         /*margin: 0 auto;*/
         /*width: 50%;*/
@@ -95,7 +95,7 @@ footer {
         /*display: flex;*/
         /*justify-content: space-between;*/
         /*margin: 0 auto;*/
-        width: 50%;
+        /*width: 50%;*/
     }
 
 
