@@ -18,13 +18,11 @@
     background-color: #000;
     color: #fff;
 }
-
 h1 {
     display: inline-block;
     grid-column: 0 auto;
     border-bottom:1px solid #000;
 }
-
 .jikoshokai img {
     border-radius: 50%;
 }
