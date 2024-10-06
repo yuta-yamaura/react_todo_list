@@ -1,9 +1,9 @@
 import { useState } from "react"
 import './App.css';
 import { InputTodo } from "./components/InputTodo";
-import { IncompleteTodos } from "./components/IncompleteTodos"
 import { CompleteTodos } from "./components/CompleteTodos";
-import { ChakraProvider, Flex, Box } from "@chakra-ui/react"
+import { ChakraProvider, Flex, Box, IconButton } from "@chakra-ui/react"
+import { DeleteIcon, EditIcon, CheckIcon } from '@chakra-ui/icons'
 import theme from "./theme/theme"
 import { v4 as uuidv4 } from "uuid";
 
@@ -90,9 +90,6 @@ export const TodoList = () => {
     });
     setincompleteTodos(updateTodos);
   }
-
-
-
   return (
     <>
       <ChakraProvider theme={theme}>
@@ -103,47 +100,50 @@ export const TodoList = () => {
           onClick={onClickAdd}
         />
         </Flex>
+        <Flex h={200} justify='center' align='center' >
         <Box>
-        <div>
-          <div>全てのタスク： {sum} 完了済み：{completeTodos.length} 未完了：{incompleteTodos.length}</div>
+          <Box>全てのタスク： {sum} 完了済み：{completeTodos.length} 未完了：{incompleteTodos.length}</Box>
         <p>未完了のToDo</p>
         <ul>
           {incompleteTodos.map((todo, index) => (
           <li key={todo.id}>
             <Box display="flex" p={2}>
             <input type="checkbox" onChange={() => onClickComplete(index)}/>
-                      <div>
+              <Box flex="1" ml={4}>
                 {todo.isEditing ? (
                     <form onSubmit={(e) => handleSubmit(index, e)}>
                       <input 
-                        id="todo" 
+                        id="todo"
                         type="text"
                         value={inputCardTitle}
                         onChange={handleChange}/>
-                      <button type="submit">Save</button>
+                      <IconButton icon={<CheckIcon />} type="submit"></IconButton>
                     </form>
                       )
                    : (
-                    <div>
-                     <p>{todo.text}</p>
-                      <button onClick={() => handleClick(index)}>Edit</button>
-                      </div>
+                      <Box>
+                        <Flex justify="space-between" align="center">
+                          <p>{todo.text}</p>
+                          <Flex ml="auto">
+                            <IconButton icon={<EditIcon />} onClick={() => handleClick(index)}></IconButton>
+                            <Box px={2}></Box>
+                            <IconButton icon={<DeleteIcon />} onClick={() => onClickDelete(index)}></IconButton>
+                          </Flex>
+                        </Flex>
+                      </Box>
                    )}
-              </div>
-            <Box px={2}>
-            </Box>
-            <button onClick={() => onClickDelete(index)}>削除</button>
+              </Box>
             </Box>
           </li>
             )
         )}
         </ul>
-    </div>
-        </Box>
         <CompleteTodos 
           completeTodos={completeTodos}
           onClickBack={onClickBack}
-        />
+          />
+        </Box>
+        </Flex>
       </ChakraProvider>
     </>
   );

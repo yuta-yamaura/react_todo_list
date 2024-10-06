@@ -1,3 +1,6 @@
+import { Flex, Box, IconButton } from "@chakra-ui/react"
+import { ArrowUpIcon } from '@chakra-ui/icons'
+
 export const CompleteTodos = (props) => {
     const { completeTodos, onClickBack } = props;
 
@@ -7,8 +10,12 @@ export const CompleteTodos = (props) => {
                 <ul>
                 {completeTodos.map((done, index) => (
                 <li key={done.id}>
-                    <p>{done.text}</p>
-                    <button onClick={() => onClickBack(index)}>戻す</button>
+                    <Box flex="1" ml={4}>
+                        <Flex justify="space-between" align="center">
+                            <p>{done.text}</p>
+                            <IconButton icon={<ArrowUpIcon />} onClick={() => onClickBack(index)}></IconButton>
+                        </Flex>
+                    </Box>
                 </li>
                     )
                 )}
