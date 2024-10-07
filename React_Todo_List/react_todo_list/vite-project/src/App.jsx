@@ -2,10 +2,10 @@ import { useState } from "react"
 import './App.css';
 import { InputTodo } from "./components/InputTodo";
 import { CompleteTodos } from "./components/CompleteTodos";
-import { ChakraProvider, Flex, Box, IconButton } from "@chakra-ui/react"
-import { DeleteIcon, EditIcon, CheckIcon } from '@chakra-ui/icons'
+import { InCompleteTodos } from "./components/InCompleteTodos";
 import theme from "./theme/theme"
 import { v4 as uuidv4 } from "uuid";
+import { ChakraProvider, Flex, Box } from "@chakra-ui/react"
 
 export const TodoList = () => {
   const [todoText, settodoText] = useState("");
@@ -13,9 +13,9 @@ export const TodoList = () => {
   const [completeTodos, setcompleteTodos] = useState([]);
   const [inputCardTitle, setInputCardTitle] = useState();
   
-  const length1 = incompleteTodos.length
-  const length2 = completeTodos.length
-  const sum = (length1 + length2)
+  const incompleteTodosLength = incompleteTodos.length
+  const completeTodosLength = completeTodos.length
+  const sum = (incompleteTodosLength + completeTodosLength)
 
   // Generate a unique ID
   const uniqueId = uuidv4();
@@ -102,42 +102,16 @@ export const TodoList = () => {
         </Flex>
         <Flex h={200} justify='center' align='center' >
         <Box>
-          <Box>全てのタスク： {sum} 完了済み：{completeTodos.length} 未完了：{incompleteTodos.length}</Box>
-        <p>未完了のToDo</p>
-        <ul>
-          {incompleteTodos.map((todo, index) => (
-          <li key={todo.id}>
-            <Box display="flex" p={2}>
-            <input type="checkbox" onChange={() => onClickComplete(index)}/>
-              <Box flex="1" ml={4}>
-                {todo.isEditing ? (
-                    <form onSubmit={(e) => handleSubmit(index, e)}>
-                      <input 
-                        id="todo"
-                        type="text"
-                        value={inputCardTitle}
-                        onChange={handleChange}/>
-                      <IconButton icon={<CheckIcon />} type="submit"></IconButton>
-                    </form>
-                      )
-                   : (
-                      <Box>
-                        <Flex justify="space-between" align="center">
-                          <p>{todo.text}</p>
-                          <Flex ml="auto">
-                            <IconButton icon={<EditIcon />} onClick={() => handleClick(index)}></IconButton>
-                            <Box px={2}></Box>
-                            <IconButton icon={<DeleteIcon />} onClick={() => onClickDelete(index)}></IconButton>
-                          </Flex>
-                        </Flex>
-                      </Box>
-                   )}
-              </Box>
-            </Box>
-          </li>
-            )
-        )}
-        </ul>
+          <Box>全てのタスク： {sum} 完了済み：{completeTodosLength} 未完了：{incompleteTodosLength}</Box>
+        <InCompleteTodos
+          incompleteTodos={incompleteTodos}
+          inputCardTitle={inputCardTitle}
+          onClickComplete={onClickComplete}
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          handleClick={handleClick}
+          onClickDelete={onClickDelete}
+          />
         <CompleteTodos 
           completeTodos={completeTodos}
           onClickBack={onClickBack}
