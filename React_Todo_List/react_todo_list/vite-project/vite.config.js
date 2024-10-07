@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.GITHUB_PAGES  // この行を追加
+  ? "react_todo_list"            // この行を追加
+  : "./",                     // この行を追加
   plugins: [react()],
-  base: "/react_todo_list",
 })
