@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "predeploy": "npm run build",
-    "deploy": "gh-pages-clean gh-pages -d dist"
+    "deploy": "gh-pages-clean gh-pages -d build"
   },
   "dependencies": {
     "react": "^18.3.1",
