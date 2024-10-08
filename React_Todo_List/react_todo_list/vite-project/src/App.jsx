@@ -19,7 +19,7 @@ export const TodoList = () => {
 
   // Generate a unique ID
   const uniqueId = uuidv4();
-  console.log('A unique ID:', uniqueId);
+  // console.log('A unique ID:', uniqueId);
 
   const onChangeTodoText = (e) => settodoText(e.target.value);
 
@@ -68,15 +68,22 @@ export const TodoList = () => {
     const updateTodos = incompleteTodos.map((todo, i) => {
       if (i === index) {
         return { ...todo, isEditing: !todo.isEditing };
-      } else{
+      } else {
         return todo;
       }
     });
     setincompleteTodos(updateTodos);
   }
 
-  const handleChange = (e) => {
-    setInputCardTitle(e.target.value);
+  const handleChange = (index, e) => {
+    const newTodos = incompleteTodos.map((todo, i) => {
+      if (i === index) {
+        return { ...todo, text: e.target.value };
+      }
+      return todo;
+    });
+    setincompleteTodos(newTodos);
+    setInputCardTitle(e.target.value)
   }
 
   const handleSubmit = (index, e) => {

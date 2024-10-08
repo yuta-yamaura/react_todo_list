@@ -18,8 +18,9 @@ export const InCompleteTodos = (props) => {
                       <input 
                         id="todo"
                         type="text"
-                        value={inputCardTitle}
-                        onChange={handleChange}/>
+                        value={todo.text}
+                        onChange={(e) => handleChange(index, e)}
+                        />
                       <IconButton icon={<CheckIcon />} type="submit"></IconButton>
                     </form>
                       )
