@@ -15,7 +15,7 @@ export const InCompleteTodos = (props) => {
               <Box flex="1" ml={4}>
                 {todo.isEditing ? (
                     <form onSubmit={(e) => handleSubmit(index, e)}>
-                      <input 
+                      <input
                         id="todo"
                         type="text"
                         value={todo.text}
