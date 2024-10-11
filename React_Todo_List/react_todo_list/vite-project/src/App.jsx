@@ -90,11 +90,12 @@ export const TodoList = () => {
     e.preventDefault();
     const updateTodos = incompleteTodos.map((todo, i) => {
       if (i === index) {
-        return { ...todo, text: inputCardTitle, isEditing: false};
+        return { ...todo, text: todo.text, isEditing: false};
       } else {
         return todo;
       }
-    });
+    }
+  );
     setincompleteTodos(updateTodos);
   }
   return (
