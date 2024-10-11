@@ -22,3 +22,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+ChakraUI/
+django_ec/
+django_ec_bk/
+twitter_clone/
