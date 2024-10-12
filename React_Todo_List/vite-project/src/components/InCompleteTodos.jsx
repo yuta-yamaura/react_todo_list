@@ -2,7 +2,7 @@ import { DeleteIcon, EditIcon, CheckIcon } from '@chakra-ui/icons'
 import { Flex, Box, IconButton } from "@chakra-ui/react"
 
 export const InCompleteTodos = (props) => {
-    const { incompleteTodos, inputCardTitle, onClickComplete, handleSubmit, handleChange, handleClick, onClickDelete } = props
+    const { incompleteTodos, onClickComplete, handleSubmit, handleChange, handleClick, onClickDelete } = props
 
     return (
         <div>

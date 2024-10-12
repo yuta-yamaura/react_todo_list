@@ -11,7 +11,6 @@ export const TodoList = () => {
   const [todoText, settodoText] = useState("");
   const [incompleteTodos, setincompleteTodos] = useState([]);
   const [completeTodos, setcompleteTodos] = useState([]);
-  const [inputCardTitle, setInputCardTitle] = useState();
   
   const incompleteTodosLength = incompleteTodos.length
   const completeTodosLength = completeTodos.length
@@ -62,9 +61,6 @@ export const TodoList = () => {
 
 
   const handleClick = (index) => {
-    // 編集対象のタスクを初期値に設定
-    const selectedTodo = incompleteTodos[index];
-    setInputCardTitle(selectedTodo.text);
     const updateTodos = incompleteTodos.map((todo, i) => {
       if (i === index) {
         return { ...todo, isEditing: !todo.isEditing };
@@ -83,7 +79,6 @@ export const TodoList = () => {
       return todo;
     });
     setincompleteTodos(newTodos);
-    setInputCardTitle(e.target.value)
   }
 
   const handleSubmit = (index, e) => {
@@ -113,7 +108,6 @@ export const TodoList = () => {
           <Box>全てのタスク： {sum} 完了済み：{completeTodosLength} 未完了：{incompleteTodosLength}</Box>
         <InCompleteTodos
           incompleteTodos={incompleteTodos}
-          inputCardTitle={inputCardTitle}
           onClickComplete={onClickComplete}
           handleSubmit={handleSubmit}
           handleChange={handleChange}
